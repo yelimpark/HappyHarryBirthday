@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: black;
+      }
+
+      #main {
+          width : 900px;
+          height: 600px;
+          margin:auto;
+          overflow: hidden;
+          margin-top: 80px;
+          display:none;
+      }
+
+      #main_img {
+        height: 600px;
+        background-image: url('img/window.png');
+        background-size: auto 100%;
+        background-repeat:no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="main_img"></div>
+    </div>
+
+    <script>
+    window.onload = function () {
+      $('#main').fadeIn(2000);
+      setTimeout(function() {
+        $('#main').fadeOut(2500);
+      }, 3000);
+      setTimeout(function() {
+        location.href="four.html";
+      }, 5000);
+    }
+    </script>
+  </body>
+</html>

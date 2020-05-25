@@ -1,0 +1,32 @@
+@keyframes slideout {
+  from {
+    left: 80%;
+    top: 100px;
+    width: 200px;
+  }
+  10% {
+    left: 70%;
+    top: 130px;
+    width: 250px;
+  }
+  30% {
+    left: 35%;
+    top: 250px;
+    width: 400px;
+  }
+  50% {
+    left: 32%;
+    top: 250px;
+    width: 400px;
+  }
+  70% {
+    left: 20%;
+    top: 150px;
+    width: 500px;
+  }
+  to {
+    left: 5%;
+    top: 0px;
+    width: 700px;
+  }
+}

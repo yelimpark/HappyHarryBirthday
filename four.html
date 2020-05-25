@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: black;
+      }
+
+      #main {
+          width : 900px;
+          height: 600px;
+          margin:auto;
+          margin-top: 80px;
+          display:none;
+      }
+
+      #main_img {
+        height: 600px;
+        overflow: hidden;
+        background-image: url('img/letter.png');
+        background-size: auto 100%;
+        background-repeat:no-repeat;
+      }
+
+      #text {
+        height: 560px;
+        overflow-y: scroll;
+        width: 80%;
+        margin: 0 5%;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      #text p {
+        text-align: left;
+      }
+
+      #text a {
+        font-size: 20px;
+        text-decoration: none;
+        color : black;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="main_img">
+        <div id="text">
+          <p>0 00 귀하</p>
+          <p>귀하의 생일을 진심으로 축하드립니다.</br></br>
+            생략</br></br>
+            000 드림.</br></br>
+            P.S) 작은 선물을 하나 동봉합니다.</br></p>
+            <img src="img/burned.png" alt="">
+            <p></br></p>
+            <a href="javascript:move()">close</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        $('#main').fadeIn(2000);
+      }
+
+      function move() {
+        $('body').fadeOut(2500);
+        setTimeout(function() {
+          location.href="five.html";
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

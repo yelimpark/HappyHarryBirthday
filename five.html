@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: black;
+      }
+
+      #main {
+          width : 900px;
+          height: 600px;
+          margin:auto;
+          overflow: hidden;
+          margin-top: 80px;
+          display:none;
+      }
+
+      button {
+        opacity: 0;
+      }
+
+      #menu_wrap {
+        position: fixed;
+        width: 900px;
+        top: 490px;
+        display: none;
+      }
+
+      #menu {
+        width : 520px;
+        height : 300px;
+        margin-left: 145px;
+        background-size: 100% auto;
+        background-repeat:no-repeat;
+        background-image: url('img/menu.png');
+      }
+
+      #burn, #wand, #ggang, #gift {
+        width : 100px;
+        height : 100px;
+        position: absolute;
+      }
+
+      #burn {
+        top: 20px;
+        left: 170px;
+      }
+      #wand {
+        left: 280px;
+        top: 20px;
+      }
+      #ggang {
+        top: 15px;
+      }
+      #gift {
+        left: 520px;
+        top: 10px;
+      }
+
+      #main_img, #main_wand, #main_ggang, #main_gift {
+        height: 600px;
+        background-size: auto 100%;
+        background-repeat:no-repeat;
+      }
+
+      #main_img {
+        background-image: url('img/room.png');
+      }
+      #main_wand {
+        background-image: url("img/room_wand.png");
+      }
+      #main_ggang {
+        background-image: url("img/room_ggang.png");
+      }
+      #main_gift {
+        background-image: url("img/room_img.png");
+      }
+
+      #wandP {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        top: 150px;
+        left: 50px;
+      }
+      #ggangP {
+        width: 70px;
+        height: 50px;
+        left: 150px;
+        position: relative;
+        top: 30px;
+      }
+      #giftP {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        right: 400px;
+        top: 200px;
+      }
+
+      #detail {
+        height : 100%;
+        background-color: white;
+      }
+
+      #close {
+        width : 50px;
+        height: 50px;
+        float: right;
+        margin: 10px;
+      }
+
+      .detail_img {
+        height : 500px;
+        width : auto;
+        margin : 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="main">
+      <div id="main_img">
+        <button id='wandP' onclick="find('wand')"> . </button>
+        <button id='ggangP' onclick="find('ggang')"> . </button>
+        <button id='giftP' onclick="find('gift')"> . </button>
+      </div>
+    </div>
+
+    <div id="menu_wrap">
+      <div id="menu">
+          <img id='burn' onclick='burnD()' src="img/burn_small.png" alt="">
+        </div>
+    </div>
+
+    <script>
+    const main = document.getElementById("main");
+
+    let found = {
+        burn : true,
+        wand : false,
+        ggang : false,
+        gift : false
+      };
+
+    let selec = false;
+
+    function find(obj) {
+      if (obj == 'wand') {
+        main.innerHTML = `<div id='main_wand' onclick="back();"> </div>`;
+        found.wand = true;
+      }
+      else if (obj == 'ggang') {
+        main.innerHTML = `<div id='main_ggang' onclick="back()"> </div>`;
+        found.ggang = true;
+      }
+      else {
+        main.innerHTML = `<div id='main_gift' onclick="back()"> </div>`;
+        found.gift = true;
+      }
+    }
+
+    function back() {
+      main.innerHTML = `      <div id="main_img">
+              <button id='wandP' onclick="find('wand')"> . </button>
+              <button id='ggangP' onclick="find('ggang')"> . </button>
+              <button id='giftP' onclick="find('gift')"> . </button>
+            </div>`;
+
+      const menu = document.getElementById("menu");
+      let str = `<img id='burn' onclick='burnD()' src="img/burn_small.png" alt="">`;
+
+      if (found.wand == true) {
+        str += `<img id='wand' onclick='wandD()' src='img/wand.png' alt="">`;
+      }
+      if (found.ggang == true) {
+        str += `<img id='ggang' onclick='ggangD()' src='img/ggang.png' alt="">`;
+      }
+      if (found.gift == true) {
+        str += `<img id='gift' onclick='giftD()' src='img/img.png' alt="">`;
+      }
+
+      menu.innerHTML = str;
+      selec = false;
+    }
+
+    function burnD() {
+      main.innerHTML = `    <div id="detail">
+            <img id='close' onclick='back()' src="img/close.png" alt="">
+            <img class='detail_img' src="img/burned.png" alt="">
+          </div>`;
+      selec = true;
+    }
+
+    function wandD() {
+      if (selec  == true) {
+        var userInput = prompt("수리 주문을 외워보자.(한글입력)"+"");
+        while (userInput != '레파로') {
+          userInput = prompt("다시 한 번 수리 주문을 외워보자.(한글입력)"+"");
+        }
+        main.innerHTML = `    <div id="detail">
+              <img id='close' onclick='back()' src="img/close.png" alt="">
+              <img class='detail_img' src="img/gift.png" alt="">
+            </div>`;
+        selec = false;
+      }
+      else {
+        main.innerHTML = `    <div id="detail">
+              <img id='close' onclick='back()' src="img/close.png" alt="">
+              <img class='detail_img' src="img/wand_bog.png" alt="">
+            </div>`;
+        selec = false;
+      }
+    }
+
+    function ggangD() {
+      main.innerHTML = `    <div id="detail">
+            <img id='close' onclick='back()' src="img/close.png" alt="">
+            <img class='detail_img' src="img/ggang_big.png" alt="">
+          </div>`;
+      selec = false;
+    }
+
+    function giftD() {
+      main.innerHTML = `    <div id="detail">
+            <img id='close' onclick='back()' src="img/close.png" alt="">
+            <img class='detail_img' src="coke.jpg" alt="">
+          </div>`;
+      selec = false;
+    }
+
+    window.onload = function () {
+      $('#menu_wrap').css('left',`${(window.innerWidth -900)/2}px`);
+      $('#main').fadeIn(2000);
+      setTimeout(function() {
+          $('#menu_wrap').css('display',`block`);
+      }, 1500);
+    }
+
+    jQuery(function($){
+      $(window).resize( function() {
+        $('#menu_wrap').css('left',`${(window.innerWidth -900)/2}px`);
+      })
+    });
+    </script>
+  </body>
+</html>
